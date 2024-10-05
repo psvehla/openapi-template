@@ -27,28 +27,29 @@ info:
     This is an **example** API to demonstrate features of OpenAPI specification
     # Introduction
     This API definition is intended to to be a good starting point for describing your API in 
-    [OpenAPI/Swagger format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
-    It also demonstrates features of [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool and 
-    [Redoc](https://github.com/Redocly/Redoc) documentation engine. So beyond the standard OpenAPI syntax we use a few 
-    [vendor extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
-
+    [OpenAPI format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md).
+    
     # OpenAPI Specification
     The goal of The OpenAPI Specification is to define a standard, language-agnostic interface to REST APIs which
     allows both humans and computers to discover and understand the capabilities of the service without access to source
     code, documentation, or through network traffic inspection. When properly defined via OpenAPI, a consumer can 
     understand and interact with the remote service with a minimal amount of implementation logic. Similar to what
     interfaces have done for lower-level programming, OpenAPI removes the guesswork in calling the service.
-externalDocs:
-  description: Find out how to create a GitHub repo for your OpenAPI definition.
-  url: 'https://github.com/Rebilly/generator-openapi-repo'
+  externalDocs:
+    url: 'https://example.com/external-docs/'  # [Optional] Replace with your contact email
+    description: Additional external documentation
 
 # A list of tags used by the definition with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
+  - name: Spec
+    description: Get the OpenAPI spec in YAML format
   - name: Echo
     description: Example echo operations
   - name: User
     description: Operations about user
+  - name: Health
+    description: Health check of the service
 servers:
   - url: 'http://example.com/api/v1'
   - url: 'https://example.com/api/v1'
@@ -56,6 +57,22 @@ servers:
 # Holds the relative paths to the individual endpoints. The path is appended to the
 # basePath in order to construct the full URL. 
 paths:
+  /openapi.yaml:
+    get:
+    tags:
+      - Spec
+
+      summary: Get the OpenAPI spec in YAML format
+
+      operationId: getOpenAPISpecYaml
+
+      responses:
+        '200':
+          description: The OpenAPI YAML specification
+          content:
+            application/yaml:
+              schema:
+                type: string
   '/users/{username}': # path parameter in curly braces
 
     # parameters list that are used with each operation for this path
@@ -148,7 +165,7 @@ paths:
               $ref: '#/components/schemas/User'
         description: Updated user object
         required: true
-  /echo: # path parameter in curly braces
+  /echo: # path
     post: # documentation for POST operation for this path
       tags:
         - Echo
@@ -195,6 +212,36 @@ paths:
               example: Hello world!
         description: Echo payload
         required: true
+  /health:
+    get:
+      tags:
+      - Health
+
+      summary: Health check of the service
+
+      operationId: healthCheck
+      
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+        '503':
+          description: Service is unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "unhealthy"
         
 # An object to hold reusable parts that can be used across the definition
 components:

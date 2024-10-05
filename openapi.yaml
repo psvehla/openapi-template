@@ -1,13 +1,15 @@
 # This is an **example** API to demonstrate features of OpenAPI specification.
 # It doesn't cover all OpenAPI features. For more full example check out: https://github.com/APIs-guru/petstore_extended
 
-openapi: 3.0.2
+openapi: 3.1.0
 info:
-  version: '1.0.0' # Your API version
-  # It can be any string but it is better to use semantic versioning: http://semver.org/
-  # Warning: OpenAPI requires the version to be a string, but without quotation marks YAML can recognize it as a number.
+  version: '0.0' # Your API version
+  # <major_version>.<minor_version>
+  # major_version: a breaking change
+  # minor_version: a non-breaking change
+  # Warning: OpenAPI requires the version to be a string. Without quotation marks YAML can recognize it as a number.
   
-  title: Example.com # Replace with your API title
+  title: Example # Replace with your API title
   # Keep it simple. Don't add "API" or version at the end of the string.
 
   termsOfService: 'https://example.com/terms/' # [Optional] Replace with an URL to your ToS
@@ -18,7 +20,7 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
-    url: 'https://redocly.github.io/openapi-template/logo.png'
+    url: 'https://psvehla.github.io/openapi-template/logo.png'
   
   # Describe your API here, you can use GFM (https://guides.github.com/features/mastering-markdown) here
   description: |

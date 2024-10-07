@@ -35,9 +35,6 @@ info:
     code, documentation, or through network traffic inspection. When properly defined via OpenAPI, a consumer can 
     understand and interact with the remote service with a minimal amount of implementation logic. Similar to what
     interfaces have done for lower-level programming, OpenAPI removes the guesswork in calling the service.
-  externalDocs:
-    url: 'https://example.com/external-docs/'  # [Optional] Replace with your contact email
-    description: Additional external documentation
 
 # A list of tags used by the definition with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
@@ -59,8 +56,8 @@ servers:
 paths:
   /openapi.yaml:
     get:
-    tags:
-      - Spec
+      tags:
+        - Spec
 
       summary: Get the OpenAPI spec in YAML format
 
@@ -205,11 +202,11 @@ paths:
           application/json:
             schema:
               type: string
-              example: Hello world!
+              examples: [ Hello world! ]
           application/xml:
             schema:
               type: string
-              example: Hello world!
+              examples: [ Hello world! ]
         description: Echo payload
         required: true
   /health:
@@ -231,7 +228,7 @@ paths:
                 properties:
                   status:
                     type: string
-                    example: "healthy"
+                    examples: [ "healthy" ]
         '503':
           description: Service is unavailable
           content:
@@ -241,7 +238,7 @@ paths:
                 properties:
                   status:
                     type: string
-                    example: "unhealthy"
+                    examples: [ "unhealthy" ]
         
 # An object to hold reusable parts that can be used across the definition
 components:
@@ -250,7 +247,7 @@ components:
       description: User email address
       type: string
       format: test
-      example: john.smith@example.com
+      examples: [ john.smith@example.com ]
     User:
       type: object
       properties:
@@ -258,17 +255,17 @@ components:
           description: User supplied username
           type: string
           minLength: 4
-          example: John78
+          examples: [ John78 ]
         firstName:
           description: User first name
           type: string
           minLength: 1
-          example: John
+          examples: [ John ]
         lastName:
           description: User last name
           type: string
           minLength: 1
-          example: Smith
+          examples: [ Smith ]
         email:
           $ref: '#/components/schemas/Email'
   headers:

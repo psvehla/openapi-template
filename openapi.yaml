@@ -70,6 +70,8 @@ paths:
             application/yaml:
               schema:
                 type: string
+        '404':
+          description: Specification not found
   '/users/{username}': # path parameter in curly braces
 
     # parameters list that are used with each operation for this path

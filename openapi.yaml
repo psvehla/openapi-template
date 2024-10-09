@@ -60,6 +60,7 @@ paths:
         - Spec
 
       summary: Get the OpenAPI spec in YAML format
+      description: Returns this OpenAPI spec in YAML format as a string. No parameters.
 
       operationId: getOpenAPISpecYaml
 
@@ -217,6 +218,9 @@ paths:
       - Health
 
       summary: Health check of the service
+      description: |
+        Allows the caller to check the health of the service. What this actually means will vary from service to service. Some may verify that downstream services 
+        are available. Some may merely report that they can respond to requests.
 
       operationId: healthCheck
       

@@ -39,8 +39,6 @@ info:
 # A list of tags used by the definition with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
-  - name: Spec
-    description: Get the OpenAPI spec in YAML format
   - name: Echo
     description: Example echo operations
   - name: User
@@ -54,25 +52,6 @@ servers:
 # Holds the relative paths to the individual endpoints. The path is appended to the
 # basePath in order to construct the full URL. 
 paths:
-  /openapi.yaml:
-    get:
-      tags:
-        - Spec
-
-      summary: Get the OpenAPI spec in YAML format
-      description: Returns this OpenAPI spec in YAML format as a string. No parameters.
-
-      operationId: getOpenAPISpecYaml
-
-      responses:
-        '200':
-          description: The OpenAPI YAML specification
-          content:
-            application/yaml:
-              schema:
-                type: string
-        '404':
-          description: Specification not found
   '/users/{username}': # path parameter in curly braces
 
     # parameters list that are used with each operation for this path
